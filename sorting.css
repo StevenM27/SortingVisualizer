@@ -1,0 +1,30 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  width: 97%;
+  background-color: #E7F6F2;
+}
+
+.display {
+  height: 100%;
+}
+
+.item {
+  margin: 0px;
+  padding: 0px;
+  bottom: 0px;
+}
+
+#mainDisplay {
+  height: 75%;
+  margin: 15px;
+}
+
+#sortSettings {
+  height: 25%;
+  margin: 15px;
+  color: #2C3333;
+}
