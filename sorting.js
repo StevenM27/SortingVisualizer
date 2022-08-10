@@ -55,9 +55,6 @@ function swap(a, b) {
   let docA = document.getElementById(a.toString());
   let docB = document.getElementById(b.toString());
 
-  //docA.id = b.toString();
-  //docB.id = a.toString();
-
   temp = docA.style.height;
   docA.style.height = docB.style.height;
   docB.style.height = temp;
@@ -67,12 +64,23 @@ function swap(a, b) {
   docB.name = temp;
 }
 
+// Compares the values of arr[a] and arr[b] according to the direction
+// of the sort (Ascending vs Descending)
+function compare(a, b, direction) {
+  if (direction === "Ascending") {
+    return arr[a] > arr[b];
+  }
+  else {
+    return arr[a] < arr[b];
+  }
+}
 
-async function bubbleSort() {
+// Sorts the array arr using bubble sort
+async function bubbleSort(direction) {
   let i, j;
   for (i = 0; i < arr.length - 1; i++) {
     for (j = 0; j < arr.length - i - 1; j++) {
-      if (arr[j] > arr[j + 1]) {
+      if (compare(j, j + 1, direction)) {
         await sleep(1);
         swap(j, j + 1);
       }
@@ -80,18 +88,85 @@ async function bubbleSort() {
   }
 }
 
+// Changes the array item's color to the specified RGB value.
+// If the color is not specified, the item's color at arr[idx] will
+// be reverted back to its default color
+function changeColor(idx, color="default") {
+  item = document.getElementById(idx.toString());
+
+  if (color === "default") {
+    if (idx % 3 === 0) {
+      color = "A5C9CA";
+    }
+    else if (idx % 3 === 1) {
+      color = "395B64";
+    }
+    else {
+      color = "2C3333";
+    }
+  }
+
+  item.style.backgroundColor = "#" + color.toString();
+
+}
+
+// Sorts the array arr using selection sort.
+async function selectionSort(direction) {
+  let i, j, idx;
+
+  for (i = 0; i < arr.length - 1; i++) {
+    idx = i;
+
+    changeColor(i, color="ff0000");
+
+    for (j = i + 1; j < arr.length; j++) {
+      await sleep(1);
+      changeColor(j, color="ff0000");
+      if (!compare(j, idx, direction)) {
+        if (idx !== i){
+          changeColor(idx);
+        }
+        idx = j;
+        changeColor(idx, color="00ff00");
+      }
+      await sleep(1);
+      if (idx !== j) {
+        changeColor(j);
+      }
+    }
+    await sleep(1);
+    swap(idx, i);
+    changeColor(idx);
+    changeColor(i);
+  }
+}
+
+
 // Sorts the array with the given settings
 // The user must choose the number of items to be sorted, the algorithm
 // that should be used, and the direction of the sort (Ascending vs Descending)
-function sort() {
+async function sort() {
 
   // Get all of the user settings from the document
   let sortingRange = document.querySelector("#sortingRange").value;
   let sortingAlgorithm = document.querySelector("input[name=AlgorithmRadio]:checked").value;
   let sortingDirection = document.querySelector("input[name=DirectionRadio]:checked").value;
 
+  let settings = document.getElementsByClassName("setting");
+
+  for (let i = 0; i < settings.length; i++) {
+    settings.item(i).disabled = true;
+  }
+
   if (sortingAlgorithm === "Bubble Sort") {
-    bubbleSort();
+    await bubbleSort(sortingDirection);
+  }
+  else if (sortingAlgorithm === "Selection Sort") {
+    await selectionSort(sortingDirection);
+  }
+
+  for (let i = 0; i < settings.length; i++) {
+    settings.item(i).disabled = false;
   }
 
 }

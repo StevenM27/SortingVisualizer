@@ -21,39 +21,39 @@
 
         <div class="row">
           <label for="sortingRange" class="form-label">Items to sort</label>
-          <input oninput="randomize()" type="range" class="form-range" min="20" max="50" step="5" id="sortingRange">
+          <input oninput="randomize()" type="range" class="form-range setting" min="20" max="50" step="5" id="sortingRange">
         </div>
 
         <div class="row">
           <div class="col">
             <div class="form-check">
-              <input checked class="form-check-input" type="radio" name="AlgorithmRadio" id="BubbleSort" value="Bubble Sort">
+              <input checked class="form-check-input setting" type="radio" name="AlgorithmRadio" id="BubbleSort" value="Bubble Sort">
               <label class="form-check-label" for="BubbleSort">Bubble Sort</label>
             </div>
 
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="AlgorithmRadio" id="QuickSort" value="Quick Sort">
-              <label class="form-check-label" for="QuickSort">Quick Sort</label>
+              <input class="form-check-input setting" type="radio" name="AlgorithmRadio" id="SelectionSort" value="Selection Sort">
+              <label class="form-check-label" for="SelectionSort">Selection Sort</label>
             </div>
           </div>
 
           <div class="col">
             <div class="form-check">
-              <input checked class="form-check-input" type="radio" name="DirectionRadio" id="Ascending" value="Ascending">
+              <input checked class="form-check-input setting" type="radio" name="DirectionRadio" id="Ascending" value="Ascending">
               <label class="form-check-label" for="Ascending">Ascending</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="DirectionRadio" id="Descending" value="Descending">
+              <input class="form-check-input setting" type="radio" name="DirectionRadio" id="Descending" value="Descending">
               <label class="form-check-label" for="Descending">Descending</label>
             </div>
           </div>
 
           <div class="col">
-            <button type="button" class="btn btn-dark" onclick="randomize()">Randomize</button>
+            <button type="button" class="btn btn-dark setting" onclick="randomize()">Randomize</button>
           </div>
 
           <div class="col">
-            <button type="button" class="btn btn-dark" onclick="sort()">Sort</button>
+            <button type="button" class="btn btn-dark setting" onclick="sort()">Sort</button>
           </div>
         </div>
 
