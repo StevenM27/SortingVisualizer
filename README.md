@@ -1,2 +1,2 @@
 # SortingVisualizer
- A tool to visualize several sorting algorithms
+ A tool to visualize sorting algorithms
